@@ -4,8 +4,13 @@
   "description": "f**k",
   "main": "app_modify.js",
   "dependencies": {
+    "@types/cheerio": "^0.22.2",
+    "@types/node": "^8.0.19",
+    "@types/request": "^2.0.0",
     "cheerio": "^1.0.0-rc.2",
-    "request": "^2.81.0"
+    "querystring": "^0.2.0",
+    "request": "^2.81.0",
+    "sync-request": "^4.1.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -13,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eruhoon/DestinyChildDataParser.git"
+    "url": "git+https://github.com/eruhoon/girls-frontline-inven-parser.git"
   },
   "keywords": [
     "데챠앗"
@@ -21,7 +26,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eruhoon/DestinyChildDataParser/issues"
+    "url": "https://github.com/eruhoon/girls-frontline-inven-parser/issues"
   },
-  "homepage": "https://github.com/eruhoon/DestinyChildDataParser#readme"
+  "homepage": "https://github.com/eruhoon/girls-frontline-inven-parser#readme"
 }
