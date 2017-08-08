@@ -1,0 +1,12 @@
+[submodule "request"]
+	path = request
+	url = https://github.com/request/request.git
+[submodule "cheerio"]
+	path = cheerio
+	url = https://github.com/cheeriojs/cheerio.git
+[submodule "fs"]
+	path = fs
+	url = https://github.com/matthewp/fs.git
+[submodule "querystring"]
+	path = querystring
+	url = https://github.com/Gozala/querystring.git

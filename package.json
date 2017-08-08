@@ -1,0 +1,27 @@
+{
+  "name": "death",
+  "version": "1.0.0",
+  "description": "f**k",
+  "main": "app_modify.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "?"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eruhoon/DestinyChildDataParser.git"
+  },
+  "keywords": [
+    "데챠앗"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eruhoon/DestinyChildDataParser/issues"
+  },
+  "homepage": "https://github.com/eruhoon/DestinyChildDataParser#readme"
+}
