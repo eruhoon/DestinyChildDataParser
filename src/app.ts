@@ -1,3 +1,3 @@
-import { GFParser } from "./parser";
+import { GFParser } from "./GFParser";
 
 GFParser.main();
