@@ -1,5 +1,5 @@
 {
-  "name": "death",
+  "name": "girls-frontline-inven-parser",
   "version": "1.0.0",
   "description": "f**k",
   "main": "app_modify.js",
@@ -14,7 +14,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "?"
+    "build": "tsc",
+    "run": "tsc && node build/app"
   },
   "repository": {
     "type": "git",
