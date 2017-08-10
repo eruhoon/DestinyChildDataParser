@@ -1,5 +1,6 @@
 import * as request from 'request';
 import * as cheerio from 'cheerio';
+import * as fs from 'fs';
 import * as syncRequest from 'sync-request';
 import * as querystring from 'querystring';
 
@@ -8,9 +9,10 @@ type GFDollIcon = string;
 type GFDollInfo = {
 	icon: GFDollIcon,
 	link: string
-	/*rarity: string,
+	rarity: string,
 	type: string,
-	time: number,
+	name: string,
+	/*time: number,
 	story: string,
 	skins: Array<GFDollSkin>,
 	stat: {
@@ -35,25 +37,53 @@ export class GFParser {
 		request.get(uri, (req, res, body) => {
 
 			let $ = cheerio.load(body);
-			let $entries = $('div#listTable tr td div.imageHeight a');
+
+			let curInfo : GFDollInfo = { icon:"", link:"", rarity:"", type:"", name:"" };
+
+			//image & type & rarity parse
+			let $entries = $('div#listTable tr td div.dollImage');
 			$entries.each((i, e) => {
 				let $entry = $(e);
 
-				let link = $(e).attr('href');
-				let icon = $entry.children('img').attr('src');
-				let iconBase64 = this.convertToBase64(icon);
+				curInfo.link = $entry.children('div.imageHeight').children('a').attr('href');
+				let icon = $entry.children('div.imageHeight').children('a').children('img').attr('src');
+				curInfo.icon = this.convertToBase64(icon);
+				curInfo.rarity = $entry.children('div.dollStar').attr('style');
+				curInfo.type = $entry.children('div.dollType').attr('style');
+				curInfo.name = $entry.parent().parent().children('td.name1').children('a').children('b').text();
+
+				//console.log($entry.parent().parent());
+				console.log(curInfo.name);
+
+				curInfo.rarity = curInfo.rarity.replace("background: url('","").replace("');", '');
+				curInfo.type = curInfo.type.replace("background: url('","").replace("');", '');
+
+				curInfo.rarity = this.convertToBase64(curInfo.rarity);
+				curInfo.type = this.convertToBase64(curInfo.type);
 
 				let entry: GFDollInfo = {
-					icon: iconBase64,
-					link: link
+					icon: curInfo.icon,	//curInfo.icon
+					link: curInfo.link,
+					rarity: curInfo.rarity,
+					type: curInfo.type,
+					name: curInfo.name
 				};
 
 				this.dollInfos.push(entry);
 
-				console.log(entry);
-
+				//console.log(entry);
 			});
+					console.log(this.dollInfos);
+					this.RecordResult();
+		});
 
+	}
+
+	private static RecordResult(){
+		let output: string = JSON.stringify(this.dollInfos);
+		fs.writeFile('./out/gf-doll.json', output, (err) => {
+			if (err) throw err;
+			console.log('\'gf-doll.json\' write complete');
 		});
 	}
 
